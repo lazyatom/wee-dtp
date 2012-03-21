@@ -13,15 +13,17 @@
         $(".message p").attr("contenteditable", true);
         var backendUrl = $("#print").attr("href");
         var updateLinks = function() {
-          var url = window.location.origin + window.location.pathname + "?msg=" + encodeURIComponent($(".message p").text());
+          var url = window.location.origin + window.location.pathname + "?msg=" + escape($(".message p").text());
           var encodedText = encodeURIComponent(url)
           $("#print").attr("href", backendUrl + "?url=" + encodedText);
           // $("#preview").attr("href", "/preview?url=" + encodedText);
         }
-        $(".message p").text(decodeURI(window.location.toString().split("msg=")[1] || ""));
+        $(".message p").text(decodeURI(window.location.toString().split("msg=")[1] || "Click here and type something..."));
         updateLinks();
         $(".message p").keyup(function() {
           updateLinks();
+        }).click(function() {
+          document.execCommand('selectAll',false,null);
         })
       })
     </script>
