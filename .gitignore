@@ -1,0 +1,5 @@
+tmp
+.sass-cache
+*.css
+.env
+public/previews

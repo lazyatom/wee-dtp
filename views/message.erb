@@ -1,0 +1,29 @@
+<div class="controls">
+  <a id="print" href="<%= backend_print_url(printer_id: 1) %>">Print this</a>
+  <a id="preview" href="/preview">Preview this</a>
+</div>
+<div class="paper">
+  <div class="content">
+    <%= erb :header %>
+    <section class="message">
+      <p>Type your message</p>
+    </section>
+    <script>
+      $(function() {
+        $(".message p").attr("contenteditable", true);
+        var backendUrl = $("#print").attr("href");
+        var updateLinks = function() {
+          var url = window.location.origin + window.location.pathname + "?msg=" + encodeURIComponent($(".message p").text());
+          var encodedText = encodeURIComponent(url)
+          $("#print").attr("href", backendUrl + "?url=" + encodedText);
+          // $("#preview").attr("href", "/preview?url=" + encodedText);
+        }
+        $(".message p").text(decodeURI(window.location.toString().split("msg=")[1] || ""));
+        updateLinks();
+        $(".message p").keyup(function() {
+          updateLinks();
+        })
+      })
+    </script>
+  </div>
+</div>

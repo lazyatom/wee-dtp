@@ -1,0 +1,12 @@
+<div class="controls">
+  <a href="<%= backend_print_url(printer_id: 1) %>">Print this</a>
+  <a href="/preview">Preview this</a>
+</div>
+<div class="paper">
+  <div class="content">
+    <%= erb :header %>
+    <% [].each do |section| %>
+      <%= erb :"sections/#{section}" %>
+    <% end %>
+  </div>
+</div>
