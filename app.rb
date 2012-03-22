@@ -12,7 +12,7 @@ BACKEND_HOST = ENV["BACKEND_HOST"]
 class WeeDTP < Sinatra::Base
   helpers do
     def backend_print_url(options)
-      "http://#{BACKEND_HOST}/print_from_page/#{options[:printer_id]}"
+      "http://#{BACKEND_HOST}/print/#{options[:printer_id]}"
     end
 
     def backend_preview_url
