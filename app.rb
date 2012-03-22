@@ -15,6 +15,10 @@ class WeeDTP < Sinatra::Base
       "http://#{BACKEND_HOST}/print_from_page/#{options[:printer_id]}"
     end
 
+    def backend_preview_url
+      "http://#{BACKEND_HOST}/preview"
+    end
+
     def period_of_day
       case Time.now.hour
       when 8..11
@@ -37,5 +41,9 @@ class WeeDTP < Sinatra::Base
 
   get "/message" do
     erb :message
+  end
+
+  get "/:template" do
+    erb params["template"].to_sym
   end
 end
